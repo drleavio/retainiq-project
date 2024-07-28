@@ -1,0 +1,78 @@
+.home-main-route {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  flex: 1;
+}
+.header-upper-container {
+  padding: 20px 30px;
+  display: flex;
+
+  .hr-ruler {
+    height: 1px;
+    background-color: gray;
+  }
+
+  .right-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    .btn {
+      .inside-btn {
+        padding-block: 15px;
+        padding-inline: 15px;
+        background-color: #08a813;
+        border: 0;
+        color: white;
+        font-weight: 500;
+        border-radius: 8px;
+      }
+    }
+  }
+  .left-container {
+    display: flex;
+    width: 100%;
+    .inside-lc {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      .inside-lc-icon {
+        height: 30px;
+        width: 30px;
+      }
+    }
+    .content {
+      @import url("https://fonts.googleapis.com/css2?family=Itim&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+      font-family: "PT Serif", serif;
+      font-weight: 600;
+      font-size: 30px;
+      width: 50%;
+      margin-right: 10px;
+      border-bottom: 1px solid black;
+      padding-bottom: 5px;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+    }
+    .primary-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #007dff;
+      background-color: #d1e0f7;
+      border-radius: 20px;
+      padding-inline: 10px;
+      border: 1px solid #007dff;
+      font-size: 15px;
+      padding-block: 2px;
+      height: fit-content;
+      margin-top: 8px;
+    }
+  }
+}
