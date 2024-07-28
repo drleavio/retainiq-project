@@ -1,45 +1,42 @@
-Table of Contents
+Table of Contents:
 -> Features
 -> Technologies Used
 -> Installation
 -> Usage
 -> Folder Structure
--> License
--> Contributing
--> contacts
 
 
-Features
+Features:
 -> Server-side rendering for better SEO and performance
 -> API routes for server-side logic
 -> Static site generation capabilities
 -> Built-in CSS support and support for CSS-in-JS libraries
 -> Fast refresh for instant feedback during development
 
-Technologies Used
+Technologies Used:
 -> Next.js
 -> React
 -> Node.js
--> Tailwind CSS / Styled Components (choose based on your preferences)/SASS
+-> Tailwind CSS / SASS
 -> TypeScript (if applicable)
 
-Installation
+Installation:
 -> Clone the repository:
 ```https://github.com/drleavio/retainiq-project.git```
--> cd retainiq-project
-Install the dependencies:
-npm install/yarn install
--> Set up environment variables (if needed) by creating a .env.local file in the root directory.
-```NEXT_PUBLIC_API_URL=https://api.example.com```
--> Start the development server
+-> go to main directory:
+cd retainiq-project
+-> Install the dependencies:
+npm install / yarn install
+-> Start the development server:
 npm run dev/yarn dev
--> Your application will be available at http://localhost:3000
+-> application will be available at:
+http://localhost:3000
 
-Usage
+Usage:
 -> Open http://localhost:3000 in your browser to view the app
 -> Modify files in the pages directory to change your web app's structure or design.
 
-Folder Structure
+Folder Structure:
 -> my-nextjs-project/  
 ├── public/              # Static files like images and icons  
 ├── src/                 # Application source code  
