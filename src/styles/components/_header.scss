@@ -10,7 +10,7 @@
 .header-upper-container {
   padding: 20px 30px;
   display: flex;
-
+  border-bottom: 1px solid #dedede;
   .hr-ruler {
     height: 1px;
     background-color: gray;
@@ -48,7 +48,9 @@
     }
     .content {
       @import url("https://fonts.googleapis.com/css2?family=Itim&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
       font-family: "PT Serif", serif;
       font-weight: 600;
       font-size: 30px;
@@ -58,6 +60,8 @@
       padding-bottom: 5px;
       @media screen and (max-width: 768px) {
         width: 100%;
+        font-family: 400;
+        font-size: 20px;
       }
     }
     .primary-btn {

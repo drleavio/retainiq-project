@@ -27,7 +27,14 @@ const Modal = ({
       {show ? (
         <Dialog style={{ position: "absolute", top: "0", left: "0" }}>
           <DialogTrigger asChild>
-            <Button variant="outline">+</Button>
+            <Button
+              style={{
+                marginLeft: "20px",
+              }}
+              variant="outline"
+            >
+              +
+            </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader></DialogHeader>

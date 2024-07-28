@@ -206,18 +206,26 @@ const MainPage = () => {
                                 </td>
                               );
                             })}
-                            <div>
-                              <Modal
-                                show={show}
-                                setShow={setShow}
-                                handleadd={handleadd}
-                                imgdata={imgdata}
-                                setImgdata={setImgdata}
-                                namedata={namedata}
-                                setNamedata={setNamedata}
-                                ind={ind}
-                              />
-                            </div>
+                            <td>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                }}
+                              >
+                                <Modal
+                                  show={show}
+                                  setShow={setShow}
+                                  handleadd={handleadd}
+                                  imgdata={imgdata}
+                                  setImgdata={setImgdata}
+                                  namedata={namedata}
+                                  setNamedata={setNamedata}
+                                  ind={ind}
+                                />
+                              </div>
+                            </td>
                           </tr>
                         )}
                       </Draggable>

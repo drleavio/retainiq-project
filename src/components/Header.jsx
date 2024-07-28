@@ -19,7 +19,6 @@ const Header = () => {
           </Button>
         </div>
       </div>
-      <div className="hr-ruler"></div>
     </div>
   );
 };
