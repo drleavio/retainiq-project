@@ -25,8 +25,8 @@ Technologies Used
 
 Installation
 -> Clone the repository:
-```git clone https://github.com/username/my-nextjs-project.git  ```
--> cd my-nextjs-project
+```https://github.com/drleavio/retainiq-project.git```
+-> cd retainiq-project
 Install the dependencies:
 npm install/yarn install
 -> Set up environment variables (if needed) by creating a .env.local file in the root directory.
