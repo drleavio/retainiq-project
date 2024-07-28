@@ -11,20 +11,12 @@ import threedots from "../../public/images/threedots.svg";
 import deletebutton from "../../public/images/deletebutton.svg";
 import ninedots from "../../public/images/ninedots.jpg";
 import plusicon from "../../public/images/plusicon.svg";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import Modal from "./Modal";
 
 const MainPage = () => {
+  const [show, setShow] = useState(true);
+  const [imgdata, setImgdata] = useState("");
+  const [namedata, setNamedata] = useState("");
   const [row, setRow] = useState([
     {
       id: 1,
@@ -86,13 +78,11 @@ const MainPage = () => {
     };
     setRow([...row, newRow]);
   };
-  const handleadd = () => {
-    console.log("helo");
-    // const newdata = {
-    //   image: "",
-    //   name: "",
-    // };
-    // row.data.push(newdata);
+  const handleadd = (ind) => {
+    row[0].data.push({
+      image: imgdata,
+      name: namedata,
+    });
   };
   const handledragend = (result) => {
     if (!result.destination) return;
@@ -217,40 +207,16 @@ const MainPage = () => {
                               );
                             })}
                             <div>
-                              <Dialog>
-                                <DialogTrigger asChild>
-                                  <Button variant="outline">+</Button>
-                                </DialogTrigger>
-                                <DialogContent className="sm:max-w-[425px]">
-                                  <DialogHeader></DialogHeader>
-                                  <div className="grid gap-4 py-4">
-                                    <div className="grid grid-cols-4 items-center gap-4">
-                                      <Label
-                                        htmlFor="name"
-                                        className="text-right"
-                                      >
-                                        image
-                                      </Label>
-                                      <Input id="picture" type="file" />
-                                    </div>
-                                    <div className="grid grid-cols-4 items-center gap-4">
-                                      <Label
-                                        htmlFor="username"
-                                        className="text-right"
-                                      >
-                                        name
-                                      </Label>
-                                      <Input
-                                        id="username"
-                                        className="col-span-3"
-                                      />
-                                    </div>
-                                  </div>
-                                  <DialogFooter>
-                                    <Button type="submit">Save changes</Button>
-                                  </DialogFooter>
-                                </DialogContent>
-                              </Dialog>
+                              <Modal
+                                show={show}
+                                setShow={setShow}
+                                handleadd={handleadd}
+                                imgdata={imgdata}
+                                setImgdata={setImgdata}
+                                namedata={namedata}
+                                setNamedata={setNamedata}
+                                ind={ind}
+                              />
                             </div>
                           </tr>
                         )}
