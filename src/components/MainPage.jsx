@@ -11,7 +11,8 @@ import threedots from "../../public/images/threedots.svg";
 import deletebutton from "../../public/images/deletebutton.svg";
 import ninedots from "../../public/images/ninedots.jpg";
 import plusicon from "../../public/images/plusicon.svg";
-import Modal from "./Modal";
+import Dialog from "./Dialog";
+import pen from "../../public/images/pen.svg";
 
 const MainPage = () => {
   const [show, setShow] = useState(true);
@@ -19,7 +20,6 @@ const MainPage = () => {
   const [namedata, setNamedata] = useState("");
   const [row, setRow] = useState([
     {
-      id: 1,
       data: [
         {
           image: img1.src,
@@ -36,7 +36,6 @@ const MainPage = () => {
       ],
     },
     {
-      id: 2,
       data: [
         {
           image: img4.src,
@@ -64,24 +63,26 @@ const MainPage = () => {
       data: [
         {
           iamge: "",
-          name: "rahul",
+          name: "",
         },
         {
           iamge: "",
-          name: "rahul",
+          name: "",
         },
         {
           iamge: "",
-          name: "rahul",
+          name: "",
         },
       ],
     };
     setRow([...row, newRow]);
   };
-  const handleadd = (ind) => {
-    row[0].data.push({
-      image: imgdata,
-      name: namedata,
+  const handleadd = () => {
+    row.map((val, index) => {
+      row[index].data.push({
+        image: "",
+        name: "",
+      });
     });
   };
   const handledragend = (result) => {
@@ -115,16 +116,28 @@ const MainPage = () => {
                     </div>
                   </div>
                 </th>
-                <th className="th">
-                  {" "}
-                  <div className="table-head">
-                    <div className="table-text">Variant 2</div>
-                    <div className="dot-img">
-                      <img className="dots" src={threedots.src} alt="" />
-                    </div>
-                  </div>
-                </th>
-                <th className="th">
+                {row[0].data.map((opt, ind) => {
+                  return (
+                    <>
+                      {ind == row[0].data.length - 1 ? null : (
+                        <th className="th">
+                          {" "}
+                          <div className="table-head">
+                            <div className="table-text">Variant {ind + 2}</div>
+                            <div className="dot-img">
+                              <img
+                                className="dots"
+                                src={threedots.src}
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                        </th>
+                      )}
+                    </>
+                  );
+                })}
+                {/* <th className="th">
                   {" "}
                   <div className="table-head">
                     <div className="table-text">Variant 3</div>
@@ -132,7 +145,7 @@ const MainPage = () => {
                       <img className="dots" src={threedots.src} alt="" />
                     </div>
                   </div>
-                </th>
+                </th> */}
               </tr>
             </thead>
             <Droppable droppableId="tbody">
@@ -203,27 +216,29 @@ const MainPage = () => {
                                     </div>
                                     <div className="tc-text">{val.name}</div>
                                   </div>
+                                  <div className="pen">
+                                    <img src={pen.src} alt="" />
+                                  </div>
                                 </td>
                               );
                             })}
-                            <td>
+                            <td key={ind}>
                               <div
                                 style={{
                                   display: "flex",
                                   alignItems: "center",
                                   justifyContent: "center",
+                                  height: "50px",
+                                  width: "50px",
+                                  backgroundColor: "white",
+                                  borderRadius: "8px",
+                                  marginLeft: "30px",
+                                  fontSize: "20px",
+                                  fontWeight: "600",
                                 }}
+                                onClick={handleadd}
                               >
-                                <Modal
-                                  show={show}
-                                  setShow={setShow}
-                                  handleadd={handleadd}
-                                  imgdata={imgdata}
-                                  setImgdata={setImgdata}
-                                  namedata={namedata}
-                                  setNamedata={setNamedata}
-                                  ind={ind}
-                                />
+                                +
                               </div>
                             </td>
                           </tr>
@@ -243,6 +258,7 @@ const MainPage = () => {
           </table>
         </DragDropContext>
       </div>
+      <Dialog />
     </div>
   );
 };
