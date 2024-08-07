@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import img1 from "../../public/images/img1.jpg";
 import img2 from "../../public/images/img2.jpg";
@@ -11,13 +11,12 @@ import threedots from "../../public/images/threedots.svg";
 import deletebutton from "../../public/images/deletebutton.svg";
 import ninedots from "../../public/images/ninedots.jpg";
 import plusicon from "../../public/images/plusicon.svg";
-import Dialog from "./Dialog";
+import Modal from "./Modal";
 import pen from "../../public/images/pen.svg";
+import spinnerWhite from "../../public/images/spinnerWhite.svg";
 
 const MainPage = () => {
-  const [show, setShow] = useState(true);
-  const [imgdata, setImgdata] = useState("");
-  const [namedata, setNamedata] = useState("");
+  const [loading, setLoading] = useState(false);
   const [row, setRow] = useState([
     {
       data: [
@@ -59,6 +58,7 @@ const MainPage = () => {
     setRow(updatedrows);
   };
   const handleclick = () => {
+    setLoading(true);
     const newRow = {
       data: [
         {
@@ -76,6 +76,7 @@ const MainPage = () => {
       ],
     };
     setRow([...row, newRow]);
+    setLoading(false);
   };
   const handleadd = () => {
     row.map((val, index) => {
@@ -137,15 +138,6 @@ const MainPage = () => {
                     </>
                   );
                 })}
-                {/* <th className="th">
-                  {" "}
-                  <div className="table-head">
-                    <div className="table-text">Variant 3</div>
-                    <div className="dot-img">
-                      <img className="dots" src={threedots.src} alt="" />
-                    </div>
-                  </div>
-                </th> */}
               </tr>
             </thead>
             <Droppable droppableId="tbody">
@@ -250,15 +242,19 @@ const MainPage = () => {
                 </tbody>
               )}
             </Droppable>
-            <div onClick={handleclick}>
-              <div className="onshow">
-                <img className="inside-onshow" src={plusicon.src} alt="" />
+            {loading ? (
+              <img src={spinnerWhite.src} alt="" />
+            ) : (
+              <div onClick={handleclick} loading={lazy}>
+                <div className="onshow">
+                  <img className="inside-onshow" src={plusicon.src} alt="" />
+                </div>
               </div>
-            </div>
+            )}
           </table>
         </DragDropContext>
       </div>
-      <Dialog />
+      <Modal />
     </div>
   );
 };
