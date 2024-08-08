@@ -33,12 +33,8 @@ const Modal = ({ show, setShow, row, ind, index }) => {
     <>
       {show && (
         <div className="modal-container">
-          <div className="close-button">X</div>
           <div className="upper-container">
             <div className="text">Select a new design to link</div>
-            <div className="search">
-              <input type="text" />
-            </div>
           </div>
           <div className="images">
             {images.map((val, inde) => {

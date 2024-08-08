@@ -77,19 +77,23 @@ const MainPage = () => {
     setRow([...row, newRow]);
   };
   const handleadd = () => {
-    row.map((val, index) => {
-      row[index].data.push({
+    const updatedRow = row.map((val) => {
+      val.data.push({
         image: "",
         name: "",
       });
+
+      return val;
     });
+    setRow(updatedRow);
   };
   const handledragend = (result) => {
     if (!result.destination) return;
-    let tempuser = [...row];
-    let [selectedrow] = tempuser.splice(result.source.index, 1);
-    tempuser.splice(result.destination.index, 0, selectedrow);
-    setRow(tempuser);
+    // let tempuser = [...row];
+
+    let [selectedrow] = row.splice(result.source.index, 1);
+    row.splice(result.destination.index, 0, selectedrow);
+    setRow(row);
   };
   return (
     <>
