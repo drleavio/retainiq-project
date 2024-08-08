@@ -16,7 +16,6 @@ import pen from "../../public/images/pen.svg";
 import spinnerWhite from "../../public/images/spinnerWhite.svg";
 
 const MainPage = () => {
-  const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [row, setRow] = useState([
     {
@@ -59,7 +58,6 @@ const MainPage = () => {
     setRow(updatedrows);
   };
   const handleclick = () => {
-    setLoading(true);
     const newRow = {
       data: [
         {
@@ -77,10 +75,9 @@ const MainPage = () => {
       ],
     };
     setRow([...row, newRow]);
-    setLoading(false);
   };
-  const handleadd = async () => {
-    await row.map((val, index) => {
+  const handleadd = () => {
+    row.map((val, index) => {
       row[index].data.push({
         image: "",
         name: "",
@@ -262,15 +259,12 @@ const MainPage = () => {
                   </tbody>
                 )}
               </Droppable>
-              {loading ? (
-                <img src={spinnerWhite.src} alt="" />
-              ) : (
-                <div onClick={handleclick} loading={lazy}>
-                  <div className="onshow">
-                    <img className="inside-onshow" src={plusicon.src} alt="" />
-                  </div>
+
+              <div onClick={handleclick} loading={lazy}>
+                <div className="onshow">
+                  <img className="inside-onshow" src={plusicon.src} alt="" />
                 </div>
-              )}
+              </div>
             </table>
           </DragDropContext>
         </div>
