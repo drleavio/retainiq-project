@@ -6,6 +6,7 @@
   width: 600px;
   background-color: white;
   position: fixed;
+
   overflow-y: auto;
   overflow-x: auto;
   z-index: 100;
@@ -40,8 +41,9 @@
 
   .images {
     flex: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .img-container {
       padding: 20px;
       .inside-img {

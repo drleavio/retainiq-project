@@ -220,7 +220,7 @@ const MainPage = () => {
                                     </div>
                                     <div
                                       className="pen"
-                                      onClick={() => setShow(true)}
+                                      onClick={() => setShow(!show)}
                                     >
                                       <img src={pen.src} alt="" />
                                       <Modal

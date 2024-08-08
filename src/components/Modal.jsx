@@ -31,7 +31,7 @@ const Modal = ({ show, setShow, row, ind, index }) => {
   ];
   return (
     <>
-      {show ? (
+      {show && (
         <div className="modal-container">
           <div className="close-button">X</div>
           <div className="upper-container">
@@ -47,7 +47,9 @@ const Modal = ({ show, setShow, row, ind, index }) => {
                   className="img-container"
                   key={inde}
                   onClick={() => {
-                    setShow(!show);
+                    console.log(show);
+
+                    setShow(false);
                   }}
                 >
                   <img
@@ -63,7 +65,7 @@ const Modal = ({ show, setShow, row, ind, index }) => {
             })}
           </div>
         </div>
-      ) : null}
+      )}
     </>
   );
 };
