@@ -17,6 +17,7 @@ import spinnerWhite from "../../public/images/spinnerWhite.svg";
 
 const MainPage = () => {
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
   const [row, setRow] = useState([
     {
       data: [
@@ -78,8 +79,8 @@ const MainPage = () => {
     setRow([...row, newRow]);
     setLoading(false);
   };
-  const handleadd = () => {
-    row.map((val, index) => {
+  const handleadd = async () => {
+    await row.map((val, index) => {
       row[index].data.push({
         image: "",
         name: "",
@@ -94,168 +95,187 @@ const MainPage = () => {
     setRow(tempuser);
   };
   return (
-    <div className="lower-container">
-      <div className="lc-content">
-        <DragDropContext
-          onDragEnd={(result) => {
-            handledragend(result);
-          }}
-        >
-          <table style={{ position: "relative" }}>
-            <thead>
-              <tr>
-                <th></th>
-                <th className="th">
-                  <div className="table-text-main">Product Filter</div>
-                </th>
-                <th className="th">
-                  {" "}
-                  <div className="table-head">
-                    <div className="table-text">Primary Variant</div>
-                    <div className="dot-img">
-                      <img className="dots" src={threedots.src} alt="" />
+    <>
+      <div className="lower-container">
+        <div className="lc-content">
+          <DragDropContext
+            onDragEnd={(result) => {
+              handledragend(result);
+            }}
+          >
+            <table style={{ position: "relative" }}>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th className="th">
+                    <div className="table-text-main">Product Filter</div>
+                  </th>
+                  <th className="th">
+                    {" "}
+                    <div className="table-head">
+                      <div className="table-text">Primary Variant</div>
+                      <div className="dot-img">
+                        <img className="dots" src={threedots.src} alt="" />
+                      </div>
                     </div>
-                  </div>
-                </th>
-                {row[0].data.map((opt, ind) => {
-                  return (
-                    <>
-                      {ind == row[0].data.length - 1 ? null : (
-                        <th className="th">
-                          {" "}
-                          <div className="table-head">
-                            <div className="table-text">Variant {ind + 2}</div>
-                            <div className="dot-img">
-                              <img
-                                className="dots"
-                                src={threedots.src}
-                                alt=""
-                              />
-                            </div>
-                          </div>
-                        </th>
-                      )}
-                    </>
-                  );
-                })}
-              </tr>
-            </thead>
-            <Droppable droppableId="tbody">
-              {(provided) => (
-                <tbody ref={provided.innerRef} {...provided.droppableProps}>
-                  {row.map((opt, ind) => {
+                  </th>
+                  {row[0].data.map((opt, ind) => {
                     return (
-                      <Draggable
-                        draggableId={ind.toString()}
-                        index={ind}
-                        key={ind.toString()}
-                      >
-                        {(provided) => (
-                          <tr
-                            key={ind}
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                          >
-                            <td className="td" key={ind}>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "center",
-                                }}
-                              >
+                      <>
+                        {ind == row[0].data.length - 1 ? null : (
+                          <th className="th">
+                            {" "}
+                            <div className="table-head">
+                              <div className="table-text">
+                                Variant {ind + 2}
+                              </div>
+                              <div className="dot-img">
+                                <img
+                                  className="dots"
+                                  src={threedots.src}
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                          </th>
+                        )}
+                      </>
+                    );
+                  })}
+                </tr>
+              </thead>
+              <Droppable droppableId="tbody">
+                {(provided) => (
+                  <tbody ref={provided.innerRef} {...provided.droppableProps}>
+                    {row.map((opt, ind) => {
+                      return (
+                        <Draggable
+                          draggableId={ind.toString()}
+                          index={ind}
+                          key={ind.toString()}
+                        >
+                          {(provided) => (
+                            <tr
+                              key={ind}
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            >
+                              <td className="td" key={ind}>
                                 <div
-                                  onClick={(ind) => {
-                                    deleteclick(ind);
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
                                   }}
-                                  className="delete-btn"
                                 >
-                                  <img src={deletebutton.src} alt="" />
-                                </div>
-                                <div className="counter">
-                                  <div className="first-counter">{ind + 1}</div>
-                                  <div className="cntr-img">
-                                    <img
-                                      className="inside-cntr-img"
-                                      src={ninedots.src}
-                                      alt=""
-                                    />
+                                  <div
+                                    onClick={(ind) => {
+                                      deleteclick(ind);
+                                    }}
+                                    className="delete-btn"
+                                  >
+                                    <img src={deletebutton.src} alt="" />
                                   </div>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="td" key={ind}>
-                              <div className="first-row">
-                                <div className="inside-fr">
-                                  Product Collection
-                                </div>
-                                <div className="inside-fr green">contains</div>
-                                <div className="inside-fr">Anarkali suits</div>
-                              </div>
-                            </td>
-
-                            {opt.data.map((val, index) => {
-                              return (
-                                <td className="td" key={index}>
-                                  <div className="table-cell" key={ind}>
-                                    <div className="tc-img">
+                                  <div className="counter">
+                                    <div className="first-counter">
+                                      {ind + 1}
+                                    </div>
+                                    <div className="cntr-img">
                                       <img
-                                        className="inside-tc-img"
-                                        src={val.image}
+                                        className="inside-cntr-img"
+                                        src={ninedots.src}
                                         alt=""
                                       />
                                     </div>
-                                    <div className="tc-text">{val.name}</div>
                                   </div>
-                                  <div className="pen">
-                                    <img src={pen.src} alt="" />
+                                </div>
+                              </td>
+                              <td className="td" key={ind}>
+                                <div className="first-row">
+                                  <div className="inside-fr">
+                                    Product Collection
                                   </div>
-                                </td>
-                              );
-                            })}
-                            <td key={ind}>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "center",
-                                  height: "50px",
-                                  width: "50px",
-                                  backgroundColor: "white",
-                                  borderRadius: "8px",
-                                  marginLeft: "30px",
-                                  fontSize: "20px",
-                                  fontWeight: "600",
-                                }}
-                                onClick={handleadd}
-                              >
-                                +
-                              </div>
-                            </td>
-                          </tr>
-                        )}
-                      </Draggable>
-                    );
-                  })}
-                  {provided.placeholder}
-                </tbody>
-              )}
-            </Droppable>
-            {loading ? (
-              <img src={spinnerWhite.src} alt="" />
-            ) : (
-              <div onClick={handleclick} loading={lazy}>
-                <div className="onshow">
-                  <img className="inside-onshow" src={plusicon.src} alt="" />
+                                  <div className="inside-fr green">
+                                    contains
+                                  </div>
+                                  <div className="inside-fr">
+                                    Anarkali suits
+                                  </div>
+                                </div>
+                              </td>
+
+                              {opt.data.map((val, index) => {
+                                return (
+                                  <td className="td" key={index}>
+                                    <div className="table-cell" key={ind}>
+                                      <div className="tc-img">
+                                        <img
+                                          className="inside-tc-img"
+                                          src={val.image}
+                                          alt=""
+                                        />
+                                      </div>
+                                      <div className="tc-text">{val.name}</div>
+                                    </div>
+                                    <div
+                                      className="pen"
+                                      onClick={() => setShow(true)}
+                                    >
+                                      <img src={pen.src} alt="" />
+                                      <Modal
+                                        show={show}
+                                        setShow={setShow}
+                                        row={row}
+                                        ind={ind}
+                                        index={index}
+                                      />
+                                    </div>
+                                  </td>
+                                );
+                              })}
+                              <td key={ind}>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    height: "50px",
+                                    width: "50px",
+                                    backgroundColor: "white",
+                                    borderRadius: "8px",
+                                    marginLeft: "30px",
+                                    fontSize: "20px",
+                                    fontWeight: "600",
+                                  }}
+                                  onClick={handleadd}
+                                >
+                                  +
+                                </div>
+                              </td>
+                            </tr>
+                          )}
+                        </Draggable>
+                      );
+                    })}
+                    {provided.placeholder}
+                  </tbody>
+                )}
+              </Droppable>
+              {loading ? (
+                <img src={spinnerWhite.src} alt="" />
+              ) : (
+                <div onClick={handleclick} loading={lazy}>
+                  <div className="onshow">
+                    <img className="inside-onshow" src={plusicon.src} alt="" />
+                  </div>
                 </div>
-              </div>
-            )}
-          </table>
-        </DragDropContext>
+              )}
+            </table>
+          </DragDropContext>
+        </div>
       </div>
-      <Modal />
-    </div>
+    </>
   );
 };
 
