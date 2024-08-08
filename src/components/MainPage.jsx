@@ -120,7 +120,7 @@ const MainPage = () => {
                       </div>
                     </div>
                   </th>
-                  {row[0].data.map((opt, ind) => {
+                  {row[0]?.data.map((opt, ind) => {
                     return (
                       <>
                         {ind == row[0].data.length - 1 ? null : (
